@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/number_keyboard_layout_grid_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp750_108"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:textColor="@android:color/black"
+    android:textSize="@dimen/sp750_32"
+    android:textStyle="bold" />
