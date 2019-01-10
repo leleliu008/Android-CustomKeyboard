@@ -1,4 +1,5 @@
 import com.fpliu.gradle.bintrayUploadExtension
+import java.util.Properties
 
 buildscript {
     repositories {
@@ -13,6 +14,7 @@ buildscript {
 
 apply {
     plugin("com.fpliu.bintray")
+    plugin("kotlin-android")
 }
 
 plugins {
@@ -29,13 +31,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(27)
+    compileSdkVersion(28)
 
     defaultConfig {
-        minSdkVersion(14)
-        targetSdkVersion(25)
+        minSdkVersion(18)
+        targetSdkVersion(28)
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "2.0.0"
     }
 
     sourceSets {
@@ -63,12 +65,10 @@ android {
 }
 
 dependencies {
-    api(fileTree(mapOf(Pair("dir", "src/main/libs"), Pair("include", "*.jar"))))
+    api(kotlin("stdlib", rootProject.extra["kotlinVersion"] as String))
 
-    //http://kotlinlang.org/docs/reference/using-gradle.html#configuring-dependencies
-    api("org.jetbrains.kotlin:kotlin-stdlib:1.2.21")
-    api("com.android.support:recyclerview-v7:27.1.1")
-    api("com.fpliu:Android-RecyclerViewHelper:1.0.0")
+    //https://bintray.com/fpliu/newton
+    api("com.fpliu:Android-RecyclerViewHelper:2.0.0")
     api("com.fpliu:Android-CustomDimen:1.0.0")
 }
 
@@ -79,6 +79,7 @@ group = "com.fpliu"
 version = android.defaultConfig.versionName ?: "1.0.0"
 
 val rootProjectName: String = rootProject.name
+val properties = Properties().apply { load(rootProject.file("local.properties").inputStream()) }
 
 bintrayUploadExtension {
     developerName = "leleliu008"
@@ -90,6 +91,5 @@ bintrayUploadExtension {
     bintrayUserName = "fpliu"
     bintrayOrganizationName = "fpliu"
     bintrayRepositoryName = "newton"
-    bintrayApiKey = "xxx"
+    bintrayApiKey = properties.getProperty("bintray.apikey")
 }
-

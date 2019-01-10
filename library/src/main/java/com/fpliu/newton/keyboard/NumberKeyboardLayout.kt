@@ -1,10 +1,10 @@
 package com.fpliu.newton.keyboard
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fpliu.newton.ui.recyclerview.adapter.ItemAdapter
 import com.fpliu.newton.ui.recyclerview.decoration.GridDividerItemDecoration
 import com.fpliu.newton.ui.recyclerview.holder.ItemViewHolder
